@@ -75,6 +75,7 @@
 - name: Register list of home directories for removing old path from .bashrc
   command: "ls /home"
   register: home_dirs
+  changed_when: false
   when: not (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
   tags: icommands-setup
 
