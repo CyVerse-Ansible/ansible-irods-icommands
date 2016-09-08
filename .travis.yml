@@ -34,13 +34,6 @@ script:
   # Run playbook to install iCommands and irodsFs
   - "sudo docker exec test_dummy ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml -i tests/inventory --connection=local"
 
-  # Idempotence test
-  - >
-    sudo docker exec test_dummy ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml -i tests/inventory --connection=local
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-
   # Smoke test that commands run
   - >
     sudo docker exec test_dummy irodsFs 2>&1 | grep -q "fuse: missing mountpoint parameter"
@@ -51,6 +44,13 @@ script:
     sudo docker exec test_dummy ils 2>&1 | grep -q "USER_RODS_HOST_EMPTY"
     && (echo 'Test for ils command: pass' && exit 0)
     || (echo 'Test for ils command: fail' && exit 1)
+
+  # Idempotence test
+  - >
+    sudo docker exec test_dummy ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml -i tests/inventory --connection=local
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
