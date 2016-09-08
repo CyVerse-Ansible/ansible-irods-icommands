@@ -1,4 +1,4 @@
-Role Name
+irods-icommands
 =========
 
 Installs the [iCommands](https://pods.iplantcollaborative.org/wiki/display/DS/Using+iCommands) 4.1.9 client for [iRODS](http://irods.org/), including irodsFs.
