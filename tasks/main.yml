@@ -80,7 +80,7 @@
 
 - name: Remove old iCommands path from all users' .bashrc for non-CentOS 5
   lineinfile: dest=/home/{{ item }}/.bashrc line='export PATH=$PATH:/opt/icommands' state=absent
-  with_items: {{ home_dirs.stdout_lines }}
+  with_items: "{{ home_dirs.stdout_lines }}"
   when: not (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
   tags: icommands-setup
 
