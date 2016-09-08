@@ -1,8 +1,4 @@
 ---
-- name: Set Python interpreter for CentOS 5
-  set_fact: ansible_python_interpreter=/usr/bin/python
-  when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
-  tags: icommands-setup
 
 - name: Gather OS-specific variables
   include_vars: "{{ item }}"
@@ -14,12 +10,31 @@
     - vars
     - icommands-setup
 
+- name: Enable EPEL for CentOS 5
+  yum:
+    name: epel-release
+  when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
+  tags: icommands-setup
+
+- name: Install Python 2.6 for CentOS 5
+  yum:
+    name: python26
+  when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
+  tags: icommands-setup
+
+
 - name: Install FUSE dependencies for CentOS
   yum: name={{ item }}
   with_items:
     - fuse
     - fuse-libs
   when: (ansible_distribution == "CentOS")
+  tags: icommands-setup
+
+- name: Set Python 2.6 for CentOS 5
+  set_fact: ansible_python_interpreter=/usr/bin/python2.6
+  changed_when: false
+  when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
   tags: icommands-setup
 
 - name: Download iCommands archive for CentOS 5
@@ -43,6 +58,12 @@
     dest: "{{ IRODSFS_DESTINATION }}"
     validate_certs: false
     mode: a+x
+  changed_when: false
+  when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
+  tags: icommands-setup
+
+- name: Set distro default Python interpreter for CentOS 5
+  set_fact: ansible_python_interpreter=/usr/bin/python
   changed_when: false
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
   tags: icommands-setup
