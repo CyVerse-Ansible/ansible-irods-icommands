@@ -47,7 +47,8 @@ script:
     && (echo 'Test for irodsFs command: pass' && exit 0)
     || (echo 'Test for irodsFs command: fail' && exit 1)
 
-  - sudo docker exec test_dummy ils 2>&1 | grep -q "USER_RODS_HOST_EMPTY"
+  - >
+    sudo docker exec test_dummy ils 2>&1 | grep -q "USER_RODS_HOST_EMPTY"
     && (echo 'Test for ils command: pass' && exit 0)
     || (echo 'Test for ils command: fail' && exit 1)
 
