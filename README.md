@@ -4,7 +4,7 @@ irods-icommands
 Installs the [iCommands](https://pods.iplantcollaborative.org/wiki/display/DS/Using+iCommands) 4.1.9<sup>[1](#centosfootnote)</sup> client for [iRODS](http://irods.org/), including irodsFs
 
 [![Build Status](https://travis-ci.org/CyVerse-Ansible/ansible-irods-icommands.svg?branch=master)](https://travis-ci.org/CyVerse-Ansible/ansible-irods-icommands)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-irods--icommands-blue.svg)](https://galaxy.ansible.com/CyVerse-Ansible/ansible-irods-icommands/)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-irods--icommands-blue.svg)](https://galaxy.ansible.com/CyVerse-Ansible/irods-icommands/)
 
 Tested working on CentOS 5+ and Ubuntu 12.04+. May also work for Debian and RHEL.
 
