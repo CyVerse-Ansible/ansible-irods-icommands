@@ -22,7 +22,6 @@
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
   tags: icommands-setup
 
-
 - name: Install FUSE dependencies for CentOS
   yum: name={{ item }}
   with_items:
@@ -97,7 +96,6 @@
   command: "ls /home"
   register: home_dirs
   changed_when: false
-  when: not (ansible_distribution == "CentOS" and ansible_distribution_major_version < '6')
   tags: icommands-setup
 
 - name: Remove old iCommands path from all users' .bashrc for non-CentOS 5
