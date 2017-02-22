@@ -35,7 +35,7 @@ script:
 
   # Smoke test that commands run
   - >
-    sudo docker exec test_dummy irodsFs 2>&1 | grep -q "fuse: missing mountpoint parameter"
+    sudo docker exec test_dummy irodsFs 2>&1 | grep -iq "fuse"
     && (echo 'Test for irodsFs command: pass' && exit 0)
     || (echo 'Test for irodsFs command: fail' && exit 1)
 
